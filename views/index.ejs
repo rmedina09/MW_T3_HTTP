@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <meta charset="utf-8">
+    <title>Actividades Hogar</title>
+    <!-- CSS only -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  	
+  <body>
+    <!-- Importar los js para algunos botones -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <!-- --- -->
+
+     <!-- Boton de acción: Editar y Eliminar -->
+    <div class="form-group">
+      <a class="btn btn-success" data-toggle="collapse" href="#collapseExample">Editar Actividades <i class="fa fa-plus"></i></a>            
+    </div>
+
+    <div class="container">
+      <br>
+      <div class="row">
+        <div class="col-6">
+
+    		  <div class="row">   <!-- INICIO ROW 1 (FORMULARIO GET) -->
+            <div class="col-12">
+              <form action="/actividadesGET" method="GET">
+                <div class="card">
+                  <div class="card-header bg-warning titulo_card text-center">
+                    <h4> ACTIVIDADES DEL HOGAR</h4>
+                    <p>FORMULARIO USANDO MÉTODO GET</p>
+                  </div>
+                  <ul id="pasteles" class="list-group list-group-flush">
+                    <% for(var a in actividades){ %>
+                    <li class="list-group-item">
+                      <div class="form-row">                  
+                        <div class="form-group col-4 text-center">
+                          <label><%= actividades[a] %></label>
+                        </div>                  
+                        <div class="form-group col-4">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="<%= a %>" id="act1H" value="h">
+                            <label class="form-check-label" for="act1H">Hombre</label>
+                          </div>
+                        </div>                  
+                        <div class="form-group col-4">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="<%= a %>" id="act1M" value="m">
+                            <label class="form-check-label" for="act1M">Mujer</label>
+                          </div>
+                        </div>                
+                      </div>
+                    </li>
+                    <% } %>
+                  </ul>
+                  <br>
+                  <div class="form-group">
+                    <div class="text-center">
+                      <button id="enviar1" type="submit" class="btn btn-primary btn-lg">Enviar</button>
+                    </div>
+                  </div>
+                  
+                </div>
+              </form>
+            </div>
+          </div> <!-- FIN ROW 1 FORMULARIO GET -->
+        </div> <!-- FIN COLUMNA 1  -->
+
+        <div class="col-6"> <!-- INICIO DE LA COLUMNA 2 -->
+          <div class="row"> <!-- INICIO ROW 2 (FORMULARIO POST)-->
+            <div class="col-12">
+              <form action="/actividadesPOST" method="POST">
+                <div class="card">
+                  <div class="card-header bg-info titulo_card text-center text-withe">
+                    <h4> ACTIVIDADES DEL HOGAR</h4>
+                    <p>FORMULARIO USANDO MÉTODO POST</p>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <% for(var a in actividades){ %>
+                    <li class="list-group-item">
+                      <div class="form-row">                  
+                        <div class="form-group col-4 text-center">
+                          <label><%= actividades[a] %></label>
+                        </div>                  
+                        <div class="form-group col-4">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="<%= a %>" id="act1H" value="h">
+                            <label class="form-check-label" for="act1H">Hombre</label>
+                          </div>
+                        </div>                  
+                        <div class="form-group col-4">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="<%= a %>" id="act1M" value="m">
+                            <label class="form-check-label" for="act1M">Mujer</label>
+                          </div>
+                        </div>                
+                      </div>
+                    </li>
+                    <% } %>
+                  </ul>
+                  <br>
+                  <div class="form-group">
+                    <div class="text-center">
+                      <button id="enviar2" type="submit" class="btn btn-primary btn-lg">Enviar</button>
+                    </div>
+                  </div>
+                  
+                </div>
+              </form>
+            </div>
+          </div> <!-- FIN ROW 2 (FORMULARIO POST)-->
+        </div> <!-- FIN COLUMNA 2 -->
+      </div> <!-- FIN ROW PRINCIPAL -->
+    </div> <!-- CONTAINER -->
+    <br>
+
+    <!-- Formulario: Editar  -->
+    <div class="collapse" id="collapseExample">
+      <form class="form" method="GET" action="actividadesPUT">
+        <div class="container">
+          <div class="card card-body">
+            <h3>Editar Formulario</h3>
+            <% i = 1; 
+              for(var a in actividades){ %>
+              <div class="form-group row">
+                <label for="act1" class="col-sm-2 col-form-label">Actividad <%= i %></label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name="<%= a %>" value="<%= actividades[a] %>">
+                </div>
+              </div>
+            <%  i++; 
+              } %>
+          </div>
+          <br>
+          <div class="form-group text-center">
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+        </div>
+        </div>
+      </form>
+    </div>
+    <!-- --- -->
+  </body>  
+</html>
+
+
